@@ -2,23 +2,21 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Django Girls blog</title>
+    <title>Django Girls Blog</title>
   </head>
   <body>
-    <div>
+    <header>
       <h1><a href="/">Django Girls Blog</a></h1>
-    </div>
+    </header>
 
-    <div>
-      <p>published: sample</p>
-      <h2><a href="">My first post</a></h2>
-      <p>Hi there</p>
-    </div>
-
-    <div>
-      <p>published: sample</p>
-      <h2><a href="">My second post</a></h2>
-      <p>It works</p>
-    </div>
+    {% for post in posts %}
+      <article>
+        <time>published: {{ post.published_date }}</time>
+        <h2><a href="">{{ post.title }}</a></h2>
+        <p>{{ post.text|linebreaksbr }}</p>
+      </article>
+    {% empty %}
+      <p>No posts yet.</p>
+    {% endfor %}
   </body>
 </html>
